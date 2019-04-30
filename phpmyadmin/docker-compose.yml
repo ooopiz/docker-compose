@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    environment:
+     - TZ=Asia/Taipei
+    ports:
+     - 80:80
+    volumes:
+     - sessions:/sessions
+     - ./config/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
+     - ./config/nginx.conf:/etc/nginx.conf
+  
+volumes:
+  sessions:
+

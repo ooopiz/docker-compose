@@ -1,0 +1,46 @@
+<?php
+/* Example */
+//$cfg['Servers'] = [
+//    1 => [
+//        'auth_type' => 'cookie',
+//        'host' => 'mydb1',
+//        'port' => 3306,
+//        'verbose' => 'Verbose name 1',
+//    ],
+//    2 => [
+//        'auth_type' => 'cookie',
+//        'host' => 'mydb2',
+//        'port' => 3306,
+//        'verbose' => 'Verbose name 2',
+//    ],
+//];
+
+
+
+$cfg['Servers'] = [
+    1 => [
+        'auth_type' => 'cookie',
+        'host' => 'mydb1',
+        'port' => 3306,
+        'verbose' => 'Verbose name 1',
+    ],
+    2 => [
+        'auth_type' => 'cookie',
+        'host' => 'mydb2',
+        'port' => 3306,
+        'verbose' => 'Verbose name 2',
+    ],
+];
+
+$server[1] = ['verbose' => '== choice db host ==',   'host' => 'localhost'];
+
+for($i=1; $i<=count($server); $i++) {
+    $cfg['Servers'][$i]['auth_type'] = 'cookie';
+    $cfg['Servers'][$i]['verbose']   = $server[$i]['verbose'];
+    $cfg['Servers'][$i]['host']      = $server[$i]['host'];
+    $cfg['Servers'][$i]['compress']  = false;
+    $cfg['Servers'][$i]['hide_db']   = '(schema|phpmyadmin|mysql|sys|innodb)';
+};
+
+//$cfg['LoginCookieValidity'] = 259200;
+
