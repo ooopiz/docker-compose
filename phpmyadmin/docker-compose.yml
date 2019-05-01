@@ -13,6 +13,7 @@ services:
      - sessions:/sessions
      - ./config/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
      - ./config/nginx.conf:/etc/nginx.conf
+     - ./config/php-phpmyadmin.ini:/usr/local/etc/php/conf.d/php-phpmyadmin.ini
   
 volumes:
   sessions:
