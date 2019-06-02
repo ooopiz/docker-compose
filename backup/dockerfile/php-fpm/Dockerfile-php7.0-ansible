@@ -1,0 +1,7 @@
+FROM local:fpm70
+
+RUN apk add --update --no-cache py-pip
+RUN pip install --upgrade pip
+RUN pip install ansible
+
+CMD ["php-fpm"]

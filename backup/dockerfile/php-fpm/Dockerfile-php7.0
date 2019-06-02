@@ -1,0 +1,17 @@
+FROM php:7.0-fpm-alpine
+
+RUN apk add --no-cache \
+            libmcrypt-dev \
+            libltdl
+
+RUN apk add zip
+
+RUN apk add --no-cache libpng libpng-dev zlib-dev && docker-php-ext-install gd zip && apk del libpng-dev zlib-dev
+
+RUN docker-php-ext-install mcrypt
+RUN docker-php-ext-install pdo pdo_mysql
+RUN docker-php-ext-install opcache
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+
+CMD ["php-fpm"]

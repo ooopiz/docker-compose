@@ -1,0 +1,7 @@
+location ~* \.(png|jpg|jpeg|gif|ico|css|js|ttf|otf|woff|xml|woff2|gzip|mp3|svg)$ {
+#    expires 7d;
+    etag on;
+#    add_header Cache-Control no-cache;
+    log_not_found off;
+    access_log off;
+}

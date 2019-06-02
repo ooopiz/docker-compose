@@ -1,0 +1,113 @@
+version: '3'
+
+services:
+#
+# nginx
+#================================================
+  nginx:
+    image: nginx:mainline-alpine
+    container_name: nginx
+#    restart: always
+    volumes:
+      - ./logs/nginx:/var/log/nginx
+      - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - /Users/rickyhuang/workspace:/home/workspace
+      - fpm56:/tmp/fpm/56
+      - fpm70:/tmp/fpm/70
+      - fpm73:/tmp/fpm/73
+    environment:
+      - TZ=Asia/Taipei
+    ports:
+      - "127.0.0.1:80:80"
+      - "127.0.0.1:443:443"
+    depends_on:
+      - fpm5.6
+      - fpm7.0
+      - fpm7.3
+
+#
+# fpm5.6
+#================================================
+  fpm5.6:
+    build:
+      context: ./dockerfile/php-fpm
+      dockerfile: Dockerfile-php5.6
+    image: local/fpm5.6
+    container_name: fpm5.6
+#    restart: always
+    volumes:
+      - ./logs/php-fpm56:/var/log/php-fpm
+      - ./config/php/php.ini:/usr/local/etc/php/php.ini
+      - ./config/php/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
+      - /Users/rickyhuang/workspace:/home/workspace
+      - fpm56:/var/run
+    environment:
+      - TZ=Asia/Taipei
+    depends_on:
+      - mysql5.6
+ 
+#
+# fpm7.0
+#================================================
+  fpm7.0:
+    build:
+      context: ./dockerfile/php-fpm
+      dockerfile: Dockerfile-php7.0
+    image: local/fpm7.0
+    container_name: fpm7.0
+#    restart: always
+    volumes:
+      - ./logs/php-fpm70:/var/log/php-fpm
+      - ./config/php/php.ini:/usr/local/etc/php/php.ini
+      - ./config/php/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
+      - /Users/rickyhuang/workspace:/home/workspace
+      - fpm70:/var/run
+    environment:
+      - TZ=Asia/Taipei
+    depends_on:
+      - mysql5.6
+
+#
+# fpm7.3
+#================================================
+  fpm7.3:
+    build:
+      context: ./dockerfile/php-fpm
+      dockerfile: Dockerfile-php7.3
+    image: local/fpm7.3
+    container_name: fpm7.3
+#    restart: always
+    volumes:
+      - ./logs/php-fpm73:/var/log/php-fpm
+      - ./config/php/php.ini:/usr/local/etc/php/php.ini
+      - ./config/php/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
+      - /Users/rickyhuang/workspace:/home/workspace
+      - fpm73:/var/run
+    environment:
+      - TZ=Asia/Taipei
+    depends_on:
+      - mysql5.6
+
+#
+# mysql5.6
+#================================================
+  mysql5.6:
+    image: mysql:5.6
+    container_name: mysql5.6
+#    restart: always
+    volumes:
+      - ./data/mysql56:/var/lib/mysql
+      - ./config/mysql/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
+      - ./logs/mysql56:/var/log/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - TZ=Asia/Taipei
+    ports:
+      - "127.0.0.1:3306:3306"
+
+volumes:
+    fpm56:
+    fpm70:
+    fpm73:
+

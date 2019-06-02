@@ -1,0 +1,16 @@
+FROM php:5.6-fpm-alpine
+
+RUN apk add --no-cache \
+            libmcrypt-dev \
+            libltdl
+
+RUN apk add --no-cache libpng libpng-dev && docker-php-ext-install gd && apk del libpng-dev
+
+RUN docker-php-ext-install mcrypt
+RUN docker-php-ext-install pdo pdo_mysql
+RUN docker-php-ext-install opcache
+
+RUN apk add zip
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+
+CMD ["php-fpm"]
