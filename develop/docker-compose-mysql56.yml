@@ -1,0 +1,19 @@
+version: '3'
+
+volumes:
+  mysql56:
+
+services:
+  mysql56:
+    image: mysql:5.6
+    container_name: mysql56
+#    restart: always
+    volumes:
+      - mysql56:/var/lib/mysql
+#      - ./config/mysql/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
+#      - ./logs/mysql56:/var/log/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - TZ=Asia/Taipei
+    ports:
+      - "127.0.0.1:3306:3306"
