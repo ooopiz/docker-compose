@@ -23,6 +23,6 @@ docker run -itd \
     --link mysql56:mysql56 \
     -v "$2":/var/www/laravel-app \
     -p 80:80 \
-    --name "$PROJECT_NAME" \
+    --name "$PREFIX-$PROJECT_NAME" \
     loopbai/laravel-server:php7.3
 
