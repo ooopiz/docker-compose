@@ -1,0 +1,45 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+  coordinator:
+    build:
+      context: ./dockerfile
+      dockerfile: pg12-with-citus
+    image: local/pg12-citus
+    container_name: coordinator
+    restart: always
+    volumes:
+      - ./etc/postgresql.conf:/postgresql.conf
+    environment:
+      POSTGRES_PASSWORD: admin123
+    ports:
+      - 9700:5432
+
+  worker1:
+    build:
+      context: ./dockerfile
+      dockerfile: pg12-with-citus
+    image: local/pg12-citus
+    container_name: worker1
+    restart: always
+    volumes:
+      - ./etc/postgresql.conf:/postgresql.conf
+    environment:
+      POSTGRES_PASSWORD: admin123
+    ports:
+      - 9701:5432
+
+  worker2:
+    build:
+      context: ./dockerfile
+      dockerfile: pg12-with-citus
+    image: local/pg12-citus
+    container_name: worker2
+    restart: always
+    volumes:
+      - ./etc/postgresql.conf:/postgresql.conf
+    environment:
+      POSTGRES_PASSWORD: admin123
+    ports:
+      - 9702:5432
