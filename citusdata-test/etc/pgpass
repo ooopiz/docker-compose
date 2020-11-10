@@ -1,0 +1,3 @@
+coordinator:5432:postgres:postgres:admin123
+worker1:5432:postgres:postgres:admin123
+worker2:5432:postgres:postgres:admin123
