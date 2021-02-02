@@ -1,0 +1,32 @@
+---
+version: "2.1"
+services:
+  piwigo:
+    image: ghcr.io/linuxserver/piwigo
+    container_name: piwigo
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=UTC
+    volumes:
+      - ./piwigo_conf:/config
+    ports:
+      - 80:80
+    restart: unless-stopped
+    depends_on:
+      - piwigo_db
+
+  piwigo_db:
+    image: ghcr.io/linuxserver/mariadb
+    container_name: piwigo_db
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - MYSQL_ROOT_PASSWORD=root
+      - TZ=UTC
+      - MYSQL_DATABASE=piwigo
+      - MYSQL_USER=piwigo
+      - MYSQL_PASSWORD=piwigo
+    volumes:
+      - ./db_conf:/config
+    restart: unless-stopped
