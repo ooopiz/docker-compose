@@ -26,9 +26,14 @@ scrape_configs:
 #    - /etc/prometheus/conf.d/node.yml
 #    refresh_interval: 5m
 
-- job_name: 'windows_exporter'
+- job_name: Windows-Server
   file_sd_configs:
-  - files:
+  - refresh_interval: 3m
+    files:
     - '/etc/prometheus/conf.d/windows_exporter.yml'
-    refresh_interval: 5m
 
+- job_name: Linux-Server
+  file_sd_configs:
+  - refresh_interval: 3m
+    files:
+    - '/etc/prometheus/conf.d/node_exporter.yml'
