@@ -15,13 +15,20 @@ alerting:
 rule_files:
 - /etc/prometheus/alert.rules
 scrape_configs:
-- job_name: node
-  honor_timestamps: true
-  scrape_interval: 15s
-  scrape_timeout: 10s
-  metrics_path: /metrics
-  scheme: http
+#- job_name: node
+#  honor_timestamps: true
+#  scrape_interval: 15s
+#  scrape_timeout: 10s
+#  metrics_path: /metrics
+#  scheme: http
+#  file_sd_configs:
+#  - files:
+#    - /etc/prometheus/conf.d/node.yml
+#    refresh_interval: 5m
+
+- job_name: 'windows_exporter'
   file_sd_configs:
   - files:
-    - /etc/prometheus/conf.d/node.yml
+    - '/etc/prometheus/conf.d/windows_exporter.yml'
     refresh_interval: 5m
+
