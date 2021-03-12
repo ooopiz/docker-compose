@@ -27,13 +27,23 @@ scrape_configs:
 #    refresh_interval: 5m
 
 - job_name: Windows-Server
+  scrape_interval: 30s
   file_sd_configs:
   - refresh_interval: 3m
     files:
     - '/etc/prometheus/conf.d/windows_exporter.yml'
 
 - job_name: Linux-Server
+  scrape_interval: 30s
   file_sd_configs:
   - refresh_interval: 3m
     files:
     - '/etc/prometheus/conf.d/node_exporter.yml'
+
+- job_name: Nginx-Http-Traffic-Status
+  scrape_interval: 15s
+  metrics_path: /http_traffic_status/format/prometheus
+  file_sd_configs:
+  - refresh_interval: 3m
+    files:
+    - '/etc/prometheus/conf.d/nginx_vts_status.yml'
