@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+  grafana-server:
+    image: grafana/grafana:7.3.4
+    container_name: grafana-server
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+#      - ./etc/grafana/grafana.ini:/etc/grafana/grafana.ini
+      - grafana-volume:/var/lib/grafana
+
+volumes:
+  grafana-volume:
+

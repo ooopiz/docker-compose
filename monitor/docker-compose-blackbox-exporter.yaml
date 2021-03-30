@@ -1,0 +1,12 @@
+version: '3.3'
+services:
+  blackbox-exporter:
+    image: prom/blackbox-exporter:v0.18.0
+    container_name: blackbox-exporter
+    restart: unless-stopped
+    dns: 
+      - 192.168.0.101
+    ports:
+      - "9115:9115"
+    volumes:
+      - ./etc/blackbox_exporter/config.yml:/etc/blackbox_exporter/config.yml
