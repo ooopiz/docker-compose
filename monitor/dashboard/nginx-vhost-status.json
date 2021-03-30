@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 7,
-  "iteration": 1616553559949,
+  "iteration": 1617092055124,
   "links": [],
   "panels": [
     {
@@ -872,8 +872,8 @@
   "schemaVersion": 26,
   "style": "dark",
   "tags": [
-    "vts",
-    "nginx"
+    "nginx",
+    "nginx-module-vts"
   ],
   "templating": {
     "list": [
@@ -941,5 +941,5 @@
   "timezone": "",
   "title": "Nginx Virtual Hosts Status",
   "uid": "6vk5koQGk",
-  "version": 55
+  "version": 56
 }
