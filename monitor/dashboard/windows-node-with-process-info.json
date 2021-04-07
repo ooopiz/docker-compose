@@ -16,8 +16,8 @@
   "editable": true,
   "gnetId": 6593,
   "graphTooltip": 1,
-  "id": 18,
-  "iteration": 1617092218907,
+  "id": 25,
+  "iteration": 1617788026188,
   "links": [],
   "panels": [
     {
@@ -2671,5 +2671,5 @@
   "timezone": "browser",
   "title": "Windows Node with process info",
   "uid": "000000014",
-  "version": 2
+  "version": 1
 }

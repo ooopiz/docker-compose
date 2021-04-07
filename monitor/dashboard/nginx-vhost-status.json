@@ -15,8 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 7,
-  "iteration": 1617092055124,
+  "id": 22,
+  "iteration": 1617788097529,
   "links": [],
   "panels": [
     {
@@ -941,5 +941,5 @@
   "timezone": "",
   "title": "Nginx Virtual Hosts Status",
   "uid": "6vk5koQGk",
-  "version": 56
+  "version": 1
 }
